@@ -1,0 +1,80 @@
+    <div class="-mt-18 min-h-screen bg-gray-100 flex items-center justify-center">
+      <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Registro de Pollada</h2>
+
+        <form class="space-y-6">
+
+          <!-- Nombre y Apellido -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-700">Nombre</label>
+              <input type="text"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-700">Apellido</label>
+              <input type="text"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+            </div>
+          </div>
+
+          <!-- Lugar -->
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Lugar</label>
+            <select class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none">
+              <option value="">Seleccione un lugar</option>
+              <option value="trujillo">Trujillo</option>
+              <option value="elporvenir">El Porvenir</option>
+            </select>
+          </div>
+
+          <!-- Número y Cantidad -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-700">Número (Teléfono)</label>
+              <input type="tel"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block mb-1 text-sm font-medium text-gray-700">Cantidad</label>
+              <input type="text"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+            </div>
+          </div>
+
+          <!-- Nº Pollada -->
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-700">Nº Pollada</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Número inicial"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+              <input id="num-final" type="text" placeholder="Número final"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none bg-gray-100 cursor-not-allowed"
+                disabled />
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label for="check-final" class="text-sm text-gray-700">Habilitar número final</label>
+              <input id="check-final" type="checkbox" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="document.getElementById('num-final').disabled = !this.checked; document.getElementById('num-final').classList.toggle('bg-gray-100'); document.getElementById('num-final').classList.toggle('cursor-not-allowed');" />
+
+            </div>
+          </div>
+
+          <!-- Referencia -->
+          <div>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Referencia</label>
+            <textarea rows="3"
+              class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none resize-none"></textarea>
+          </div>
+
+          <!-- Botones -->
+          <div class="flex justify-end gap-4 pt-4">
+            <button type="button"
+              class="px-5 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition">Cancelar</button>
+            <button type="submit"
+              class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">Crear</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
