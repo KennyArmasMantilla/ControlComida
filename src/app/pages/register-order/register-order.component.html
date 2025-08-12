@@ -1,80 +1,121 @@
-    <div class="-mt-18 min-h-screen bg-gray-100 flex items-center justify-center">
-      <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Registro de Pollada</h2>
+<div class="-mt-18 min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Registro de Pollada</h2>
 
-        <form class="space-y-6">
+    <form [formGroup]="myform" class="space-y-6" (ngSubmit)="onSave()">
 
-          <!-- Nombre y Apellido -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block mb-1 text-sm font-medium text-gray-700">Nombre</label>
-              <input type="text"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
-            </div>
-            <div>
-              <label class="block mb-1 text-sm font-medium text-gray-700">Apellido</label>
-              <input type="text"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
-            </div>
-          </div>
-
-          <!-- Lugar -->
-          <div>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Lugar</label>
-            <select class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none">
-              <option value="">Seleccione un lugar</option>
-              <option value="trujillo">Trujillo</option>
-              <option value="elporvenir">El Porvenir</option>
-            </select>
-          </div>
-
-          <!-- Número y Cantidad -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block mb-1 text-sm font-medium text-gray-700">Número (Teléfono)</label>
-              <input type="tel"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
-            </div>
-            <div>
-              <label class="block mb-1 text-sm font-medium text-gray-700">Cantidad</label>
-              <input type="text"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
-            </div>
-          </div>
-
-          <!-- Nº Pollada -->
-          <div>
-            <label class="block mb-2 text-sm font-medium text-gray-700">Nº Pollada</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Número inicial"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
-              <input id="num-final" type="text" placeholder="Número final"
-                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none bg-gray-100 cursor-not-allowed"
-                disabled />
-            </div>
-            <div class="mt-2 flex items-center gap-2">
-              <label for="check-final" class="text-sm text-gray-700">Habilitar número final</label>
-              <input id="check-final" type="checkbox" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
-                onclick="document.getElementById('num-final').disabled = !this.checked; document.getElementById('num-final').classList.toggle('bg-gray-100'); document.getElementById('num-final').classList.toggle('cursor-not-allowed');" />
-
-            </div>
-          </div>
-
-          <!-- Referencia -->
-          <div>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Referencia</label>
-            <textarea rows="3"
-              class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none resize-none"></textarea>
-          </div>
-
-          <!-- Botones -->
-          <div class="flex justify-end gap-4 pt-4">
-            <button type="button"
-              class="px-5 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition">Cancelar</button>
-            <button type="submit"
-              class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">Crear</button>
-          </div>
-
-        </form>
+      <!-- Nombre y Apellido -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Nombre</label>
+          <input type="text" formControlName="name"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+          @if (formUtils.isValidField(myform,'name')){
+          <span class="text-sm text-red-600 mt-1 block">
+            {{formUtils.getFieldError(myform, "name")}}
+          </span>
+          }
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Apellido</label>
+          <input type="text" formControlName="lastname"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+          @if (formUtils.isValidField(myform,'lastname')){
+          <span class="text-sm text-red-600 mt-1 block">
+            {{formUtils.getFieldError(myform, "lastname")}}
+          </span>
+          }
+        </div>
       </div>
-    </div>
+
+      <!-- Lugar -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Lugar</label>
+        <select formControlName="location"
+          class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none">
+          <option value="">Seleccione un lugar</option>
+          <option value="trujillo">Trujillo</option>
+          <option value="elporvenir">El Porvenir</option>
+          <option value="laEsperanza">La Esperanza</option>
+        </select>
+        @if (formUtils.isValidField(myform,'location')){
+        <span class="text-sm text-red-600 mt-1 block">
+          {{formUtils.getFieldError(myform, "location")}}
+        </span>
+        }
+      </div>
+
+      <!-- Número y Cantidad -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Número (Teléfono)</label>
+          <input type="tel" formControlName="phone"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+          @if (formUtils.isValidField(myform,'phone')){
+          <span class="text-sm text-red-600 mt-1 block">
+            {{formUtils.getFieldError(myform, "phone")}}
+          </span>
+          }
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Cantidad</label>
+          <input type="text" formControlName="quantity"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+          @if (formUtils.isValidField(myform,'quantity')){
+          <span class="text-sm text-red-600 mt-1 block">
+            {{formUtils.getFieldError(myform, "quantity")}}
+          </span>
+          }
+        </div>
+      </div>
+
+      <!-- Nº Pollada -->
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-700">Nº Pollada</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <input type="text" placeholder="Número inicial" formControlName="initialNumber"
+              class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none" />
+            @if (formUtils.isValidField(myform,'initialNumber')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{formUtils.getFieldError(myform, "initialNumber")}}
+            </span>
+            }
+          </div>
+          <div>
+            <input id="num-final" type="text" placeholder="Número final" formControlName="finalNumber"
+              class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+              [ngClass]="{'bg-gray-100 cursor-not-allowed': !enableFinalNumber}" [disabled]="!enableFinalNumber" />
+            @if (formUtils.isValidField(myform,'finalNumber')) {
+            <span class="text-sm text-red-600 mt-1 block">
+              {{formUtils.getFieldError(myform, "finalNumber")}}
+            </span>
+            }
+          </div>
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+          <label for="check-final" class="text-sm text-gray-700">Habilitar número final</label>
+          <input id="check-final" type="checkbox" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+            [checked]="enableFinalNumber" (change)="onToggleFinalNumber()" />
+
+        </div>
+      </div>
+
+      <!-- Referencia -->
+      <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Referencia</label>
+        <textarea rows="3" formControlName="reference"
+          class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none resize-none"></textarea>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-end gap-4 pt-4">
+        <button type="button"
+          class="px-5 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition">Cancelar</button>
+        <button type="submit"
+          class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">Crear</button>
+      </div>
+
+    </form>
+  </div>
+</div>
