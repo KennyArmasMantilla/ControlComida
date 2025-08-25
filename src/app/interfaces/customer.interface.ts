@@ -5,8 +5,7 @@ export interface Customer {
     location:         string;
     phone:            string;
     quantity:         number;
-    initialChicken:   number;
-    lastChicken:      number;
+    chickenRanges:    string[];
     reference:        string;
     createDate:       Date;
     updateDate:       Date;

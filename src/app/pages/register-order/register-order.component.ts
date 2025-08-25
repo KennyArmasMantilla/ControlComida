@@ -25,7 +25,7 @@ export class RegisterOrderComponent {
 
   myform = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    lastname: ['', [Validators.required]],
+    lastname: ['', [Validators.required, Validators.minLength(3)]],
     location: ['', [Validators.required]],
     phone: ['', []],
     quantity: ['', [Validators.required, Validators.min(1)]],
@@ -48,8 +48,7 @@ export class RegisterOrderComponent {
       location: formValue.location || '',
       phone: formValue.phone || '',
       quantity: Number(formValue.quantity) || 0,
-      initialChicken: Number(formValue.initialNumber) || 0,
-      lastChicken: Number(formValue.finalNumber) || 0,
+      chickenRanges: [`${formValue.initialNumber} - ${formValue.finalNumber}` || ''],
       reference: formValue.reference || '',
       createDate: new Date(),
       updateDate: new Date(),
