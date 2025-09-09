@@ -1,8 +1,8 @@
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Component, inject } from '@angular/core';
-import { FormUtils } from '../../utils/form-utils';
-import { CustomerService } from '../../services/customer.service';
-import { Customer } from '../../interfaces/customer.interface';
+import { FormUtils } from '../../../utils/form-utils';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../interfaces/customer.interface';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
