@@ -5,36 +5,46 @@
   </a>
   <ul class="mt-4">
     <span class="text-gray-400 font-bold">Control</span>
-    <li class="mb-1 group active">
+    <li class="mb-1">
       <a routerLink="/dashboard"
-         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+         routerLinkActive="bg-gray-800 text-white rounded-md"
+         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md">
         <i class="ri-home-2-line mr-3 text-lg"></i>
         <span class="text-sm">Dashboard</span>
       </a>
     </li>
-    <li class="mb-1 group active">
+
+    <!--Registro-->
+    <li class="mb-1"
+        routerLinkActive="active"
+        #rla="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: false }">
       <a (click)="toggleMenu()"
-         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+         [class.bg-gray-800]="rla.isActive"
+         [class.text-white]="rla.isActive"
+         class="flex items-center px-4 py-2 font-semibold text-gray-900 rounded-md hover:bg-gray-950 hover:text-gray-100">
         <i class='bx bx-user mr-3 text-lg'></i>
         <span class="text-sm">Registro</span>
-        <i class="ri-arrow-right-s-line ml-auto" [ngClass]="{'rotate-90' : listRegister}"></i>
+        <i class="ri-arrow-right-s-line ml-auto" [ngClass]="{ 'rotate-90': listRegister }"></i>
       </a>
       @if (listRegister) {
-        <ul class="list-none pl-7 mt-2">
+        <ul class="list-none mt-2">
           @for (route of registerRoute; track route) {
             <li class="mb-4">
               <a [routerLink]="['/register', route.path]"
-                 routerLinkActive="bg-gray-400 text-gray-100 rounded-md w-47 text-white"
-                 class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">{{ route.data?.['description'] }}</a>
+                 routerLinkActive="bg-gray-400 text-gray-100 rounded-md w-50 text-white"
+                 class="text-gray-900 text-sm flex items-center hover:text-[#f84525] pl-7 hover:w-50 hover:bg-gray-400 hover:rounded-md before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">{{ route.data?.['description'] }}</a>
             </li>
           }
         </ul>
       }
-
     </li>
-    <li class="mb-1 group">
+
+    <!--Busqueda -->
+    <li class="mb-1">
       <a routerLink="/searchClient"
-         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+         routerLinkActive="bg-gray-800 text-white rounded-md"
+         class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md">
         <i class='bx bx-list-ul mr-3 text-lg'></i>
         <span class="text-sm">Busqueda</span>
       </a>
